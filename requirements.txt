@@ -1,0 +1,7 @@
+bs4
+fastapi
+curl_cffi
+dotenv
+uvicorn
+apscheduler
+qbittorrent-api
