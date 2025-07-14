@@ -14,7 +14,6 @@ import re
 import qbittorrentapi
 from dotenv import load_dotenv
 import os
-from tinydb import TinyDB, Query
 from fastapi import FastAPI
 import uvicorn
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -41,10 +40,10 @@ def upload_download(torrent_path):
     )
 
     qbt_client = qbittorrentapi.Client(**qbit_conn)
-
+    save_path = os.getenv("SAVEPATH")
     try:
         qbt_client.auth_log_in(**qbit_conn)
-        qbt_client.torrents_add(torrent_files=torrent_path, save_path="/vol2/1000/media/mvs", category="")
+        qbt_client.torrents_add(torrent_files=torrent_path, save_path=save_path, category="")
     except Exception as e:
         print("任务添加失败：", str(e))
         pass
